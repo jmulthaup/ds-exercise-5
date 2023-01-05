@@ -1,42 +1,41 @@
-def ASSIGNMENT(new_list, i, old_list, j):
-    new_list[i] = old_list[j]
+def merge_sort(list_to_sort_by_merge):
+    """Sort array by merge sort algorithm.
 
-
-def mergeSort(list_to_sort_by_merge):
-    if (
-        len(list_to_sort_by_merge) > 1
-        and not len(list_to_sort_by_merge) < 1
-        and len(list_to_sort_by_merge) != 0
-    ):
+    Args:
+        list_to_sort_by_merge (list): Unsorted list that will be sorted in the end.
+    """
+    if (len(list_to_sort_by_merge) > 1):
+        ## divide list in the middle
         mid = len(list_to_sort_by_merge) // 2
         left = list_to_sort_by_merge[:mid]
         right = list_to_sort_by_merge[mid:]
 
-        mergeSort(left)
-        mergeSort(right)
+        ## recursive call
+        merge_sort(left)
+        merge_sort(right)
 
-        l = 0
-        r = 0
-        i = 0
+        left_index = 0
+        right_index = 0
+        list_index = 0
 
-        while l < len(left) and r < len(right):
-            if left[l] <= right[r]:
-                ASSIGNMENT(new_list=list_to_sort_by_merge, i=i, old_list=left, j=l)
-                l += 1
+        while left_index < len(left) and right_index < len(right):
+            if left[left_index] <= right[right_index]:
+                list_to_sort_by_merge[list_index] = left[left_index]
+                left_index += 1
             else:
-                ASSIGNMENT(new_list=list_to_sort_by_merge, i=i, old_list=right, j=r)
-                r += 1
-            i += 1
+                list_to_sort_by_merge[list_index] = right[right_index]
+                right_index += 1
+            list_index += 1
 
-        while l < len(left):
-            list_to_sort_by_merge[i] = left[l]
-            l += 1
-            i += 1
+        while left_index < len(left):
+            list_to_sort_by_merge[list_index] = left[left_index]
+            left_index += 1
+            list_index += 1
 
-        while r < len(right):
-            list_to_sort_by_merge[i] = right[r]
-            r += 1
-            i += 1
+        while right_index < len(right):
+            list_to_sort_by_merge[list_index] = right[right_index]
+            right_index += 1
+            list_index += 1
 
 
 import matplotlib.pyplot as plt
