@@ -1,0 +1,14 @@
+version: "3"
+services:
+  run_all_tests:
+    build: ./
+    volumes:
+    - /Users/justusmulthaup/Desktop/ds_5_2
+    command: pytest
+  run_input:
+    build: ./
+    volumes: 
+    - /Users/justusmulthaup/Desktop/ds_5_2
+    command: python3 given_input.py 
+
+
